@@ -137,6 +137,7 @@ public class Util {
             {
                 builderConstructor.append("        if(" + next + " != null && !"+next+".isClosed()) {\n");
                 builderConstructor.append("            " + next + ".addField(name, value);\n");
+                builderConstructor.append("            return;\n");
                 builderConstructor.append("        }\n");
             }
             else if(isJsonArray)
@@ -190,6 +191,7 @@ public class Util {
                 builderConstructor.append("\t\t\t\t" + next + " = new " + jsonObjectName +"(attributes);\n");
                 builderConstructor.append("\t\t\telse\n");
                 builderConstructor.append("\t\t\t\t" + next + ".addField(name, attributes);\n");
+                builderConstructor.append("\t\t\treturn;\n");
                 builderConstructor.append("\t\t}\n\n");
             }
             else if(isJsonArray)
