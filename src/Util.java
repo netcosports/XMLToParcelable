@@ -197,22 +197,20 @@ public class Util {
             else if(isJsonArray)
             {
                 String item = jsonObjectName +"Item";
+
+                builderConstructor.append("\t\tfor (" + jsonObjectName + " " + item + " : " + next + ") {\n" +
+                        "\t\t\tif(" + item + " != null && !" + item + ".isClosed()) {\n" +
+                        "\t\t\t\t" + item + ".addField(name, attributes);\n" +
+                        "\t\t\t\treturn;\n" +
+                        "\t\t\t}\n" +
+                        "\t\t}\n");
+
                 builderConstructor.append("\t\tif(name.equals("+((String) next).toUpperCase()+")){\n");
-
-
-                builderConstructor.append("\t\t\tfor (" + jsonObjectName + " " + item + " : " + next + ") {\n" +
-                        "\t\t\t\tif(" + item + " != null && !" + item + ".isClosed()) {\n" +
-                        "\t\t\t\t\t" + item + ".addField(name, attributes);\n" +
-                        "\t\t\t\t\treturn;\n" +
-                        "\t\t\t\t}\n" +
-                        "\t\t\t}\n");
 
                 builderConstructor.append("\t\t\t"+next+".add(new "+jsonObjectName+"(attributes));\n");
 
                 builderConstructor.append("\t\t\treturn;\n");
                 builderConstructor.append("\t\t}\n\n");
-
-
             }
         }
     }
